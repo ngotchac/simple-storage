@@ -37,8 +37,9 @@ app.use(async (ctx, next) => {
       ctx.type = path.extname(fpath);
     }
   } catch (error) {
-    await next();
   }
+
+  return next();
 });
 
 router.post('/', async (ctx) => {
