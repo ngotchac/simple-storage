@@ -23,6 +23,10 @@ app.use(Body({ multipart: true }));
 app.use(Static(path.join(__dirname, '/public')));
 
 app.use(async (ctx, next) => {
+  if (!ctx.path) {
+    return next();
+  }
+
   const fpath = path.join(TMP_DIR, ctx.path);
 
   if (await fs.pathExists(fpath)) {
