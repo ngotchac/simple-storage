@@ -25,7 +25,7 @@ app.use(Static(path.join(__dirname, '/public')));
 app.use(async (ctx, next) => {
   const fpath = path.join(TMP_DIR, ctx.path);
 
-  if (fs.pathExists(fpath)) {
+  if (await fs.pathExists(fpath)) {
     ctx.type = path.extname(fpath);
     ctx.body = fs.createReadStream(fpath);
   } else {
