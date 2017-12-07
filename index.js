@@ -19,7 +19,11 @@ fs.ensureDir(TMP_DIR);
 
 app.use(Logger());
 app.use(Cors());
-app.use(Body({ multipart: true }));
+app.use(Body({
+  multipart: true,
+  jsonLimit: '10mb',
+  formLimit: '10mb'
+}));
 app.use(Static(path.join(__dirname, '/public')));
 
 app.use(async (ctx, next) => {
